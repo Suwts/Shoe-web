@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Đăng kí Suwts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MATERIAL DESIGN ICONIC FONT -->
+  <link rel="stylesheet" th:href="  https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+</head>
+
+<body>
+
+<div class="wrapper" id = "register_bg">
+  <div class="inner">
+    <div class="image-holder">
+      <img src="../../assets/img/register/registration-form-1.jpg" alt="">
+    </div>
+    <form [formGroup] = "registerForm">
+      <h3>Đăng kí</h3>
+      <div class="form-wrapper">
+        <input type="text" placeholder="Họ tên" class="form-control" formControlName = "fullName"
+        (focus)="validatorFullName()" name="fullName">
+        <p class="text-danger" *ngIf="registerForm.get('fullName').errors && checkFullname">Họ tên không được để trống</p>
+    
+      </div>
+      <div class="form-wrapper">
+        <input type="text"  placeholder="Tên đăng nhập" class="form-control" 
+        (focus)="validatorUserName()" formControlName = "userName" name="userName">
+        <i class="zmdi zmdi-account"></i>
+        <p class="text-danger" *ngIf="registerForm.get('userName').errors && checkUserName">Tên đăng nhập không được để trống</p>
+      </div>
+      <div class="form-wrapper">
+        <input type="text" placeholder="Email" class="form-control" (focus)="validatorEmail()"
+        name="email" formControlName="email"> 
+        <i class="zmdi zmdi-email"></i>
+        <p class="text-danger" *ngIf="registerForm.get('email').errors && checkEmail">Email không hợp lệ</p>
+      </div>
+      <div class="form-wrapper">
+        <select class="form-control" formControlName = "sex" (focus)="validatorSex()" name="sex">
+          <option value="" disabled selected>Giới tính</option>
+          <option value="male">Nam</option>
+          <option value="femal">Nữ</option>
+          <option value="other">Khác</option>
+        </select>
+        <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+        <p class="text-danger" *ngIf="registerForm.get('sex').errors && checkSex">Giới tính không được để trống</p>
+      </div>
+      <div class="form-wrapper">
+        <input type="password" placeholder="Mật khẩu" class="form-control" name="password"
+        (focus)="validatorPassword()" formControlName = "password">
+        <i class="zmdi zmdi-lock"></i>
+        <p class="text-danger" *ngIf="registerForm.get('password').errors && checkPassword">Mật khẩu không hợp lệ</p>
+
+      </div>
+      <div class="form-wrapper">
+        <input type="password" placeholder="Xác nhận mật khẩu" class="form-control" name = "rePassword"
+         formControlName = "rePassword">
+        <i class="zmdi zmdi-lock"></i>
+
+      </div>
+      <button (click)="register()">Đăng kí
+        <i class="zmdi zmdi-arrow-right"></i>
+      </button>
+    </form>
+  </div>
+</div>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

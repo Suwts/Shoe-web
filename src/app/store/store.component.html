@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+
+<head>
+  <title>Store</title>
+</head>
+
+<body>
+<app-header></app-header>
+<div id="page-header-1709836191" class="page-header-wrapper">
+  <div class="page-title dark featured-title">
+
+    <div class="page-title-bg">
+      <div class="title-bg fill bg-fill parallax-active" data-parallax-container=".page-title"
+           data-parallax-background="" data-parallax="-">
+      </div>
+      <div class="title-overlay fill"></div>
+    </div>
+
+    <div class="page-title-inner container align-center text-center flex-row-col medium-flex-wrap">
+      <div class="title-wrapper flex-col">
+        <h1 class="entry-title mb-0">
+          Cửa hàng </h1>
+      </div>
+      <div class="title-content flex-col">
+        <div class="title-breadcrumbs pb-half pt-half">
+          <nav class="woocommerce-breadcrumb breadcrumbs"><a href="../../index.html">Trang chủ</a> <span
+                  class="divider">/</span>
+            Cửa hàng</nav>
+        </div>
+      </div>
+    </div><!-- flex-row -->
+
+
+    <style scope="scope">
+      #page-header-1709836191 .page-title-inner {
+        min-height: 180px;
+      }
+
+      #page-header-1709836191 .title-bg {
+        background-image: url(http://mauweb.monamedia.net/dualeoshoes/wp-content/uploads/2019/05/Rublevoy_Steemit.png);
+        background-position: 50% 100%;
+      }
+
+      #page-header-1709836191 .title-overlay {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    </style>
+  </div><!-- .page-title -->
+</div>
+
+<section class="shop_grid_area section_padding_100">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="shop_sidebar_area">
+
+          <div class="widget catagory mb-50">
+            <!--  Side Nav  -->
+            <div class="nav-side-menu">
+              <h6 class="mb-0">Thương hiệu</h6>
+              <div class="menu-list">
+                <!-- Single Item -->
+                <div  *ngFor="let catetory of catetories">
+                  <input type="checkbox">{{ catetory.name }}<br>
+                  <hr>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="widget price mb-50">
+            <h6 class="widget-title mb-30">Giá</h6>
+            <div class="widget-desc">
+              <div class="slider-range">
+                <div data-min="0" data-max="3000" data-unit="$"
+                     class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                     data-value-min="0" data-value-max="1350" data-label-result="Price:">
+                  <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                  <span class="ui-slider-handle ui-state-default ui-corner-all"
+                        tabindex="0"></span>
+                  <span class="ui-slider-handle ui-state-default ui-corner-all"
+                        tabindex="0"></span>
+                </div>
+                <div class="range-price">Price: 0 - 1350</div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="widget size mb-50">
+            <h6 class="widget-title mb-30">Kích cỡ</h6>
+            <div class="widget-desc">
+              <input type="checkbox"> 35 - 38<br>
+              <input type="checkbox"> 39 - 40<br>
+              <input type="checkbox"> 41 - 43<br>
+              <input type="checkbox"> 44 - ?<br>
+            </div>
+          </div>
+
+          <div class="widget recommended">
+            <h6 class="widget-title mb-30">Khuyên mua</h6>
+
+            <div class="widget-desc">
+              <!-- Single Recommended Product -->
+              <div class="single-recommended-product d-flex mb-30">
+                <div class="single-recommended-thumb mr-3">
+                  <img src ="../../assets/img/shoe/1.jpg" alt="">
+                </div>
+                <div class="single-recommended-desc">
+                  <h6>Men’s T-shirt</h6>
+                  <p>$ 39.99</p>
+                </div>
+              </div>
+              <!-- Single Recommended Product -->
+              <div class="single-recommended-product d-flex mb-30">
+                <div class="single-recommended-thumb mr-3">
+                  <img src ="../../assets/img/shoe/1.jpg" alt="">
+                </div>
+                <div class="single-recommended-desc">
+                  <h6>Blue mini top</h6>
+                  <p>$ 19.99</p>
+                </div>
+              </div>
+              <!-- Single Recommended Product -->
+              <div class="single-recommended-product d-flex">
+                <div class="single-recommended-thumb mr-3">
+                  <img src ="../../assets/img/shoe/1.jpg" alt="">
+                </div>
+                <div class="single-recommended-desc">
+                  <h6>Women’s T-shirt</h6>
+                  <p>$ 39.99</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-8 col-lg-9">
+        <div class="shop_grid_product_area">
+          <div class="row">
+
+            <!-- Single gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item wow fadeInUpBig border "
+                 data-wow-delay="0.2s" *ngFor="let product of products" style="margin-left: 15px;">
+              <!-- Product Image -->
+              <div class="product-img">
+                <img [src]="product.url" alt="Image">
+                <div class="product-quicview">
+                  <button (click)="productDetail(product)" data-toggle="modal" data-target="#quickview"><i
+                          class="fa-solid fa-eye"></i></button>
+                </div>
+              </div>
+              <!-- Product Description -->
+              <div class="product-description">
+                <div class="pi-text">
+                  <div class="catagory-name">Towel</div>
+                    <h5>{{ product.name }}</h5>
+                  <div class="product-price">
+                      {{ product.price }}
+                  </div>
+              </div>
+                <!-- Add to Cart -->
+                <a href="#" class="add-to-cart-btn" style="text-align: center;"> Thêm vào giỏ hàng</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="shop_pagination_area wow fadeInUp" data-wow-delay="1.1s">
+          <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm"> 
+              <li class="page-item" *ngIf="currentPage > 1" >
+                <a class="page-link" href="#" (click)="onPageChange(1)">First</a>
+              </li>
+              <li class="page-item" *ngIf="currentPage > 1">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage -1)"><<</a>
+              </li>
+              <ng-container *ngFor="let page of visiblePage">
+                <li class="page-item" [ngClass]="{'active' : page === currentPage}">
+                  <a class="page-link" routerLink = "/store/" (click)="onPageChange(page)">{{ page }}</a>
+                </li>
+              </ng-container>
+              <li class="page-item" *ngIf="currentPage < totalPage">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage  + 1)">>></a>
+              </li>
+              <li class="page-item" *ngIf="currentPage < totalPage">
+                <a class="page-link" href="#" (click)="onPageChange(totalPage)">Last</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
+
+</body>
+
+</html>

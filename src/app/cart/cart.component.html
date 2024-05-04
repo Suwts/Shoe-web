@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cart</title>
+</head>
+
+<body>
+    <app-header></app-header>
+<div id="page-header-1709836191" class="page-header-wrapper">
+    <div class="page-title dark featured-title">
+
+        <div class="page-title-bg">
+            <div class="title-bg fill bg-fill parallax-active" data-parallax-container=".page-title"
+                 data-parallax-background="" data-parallax="-">
+            </div>
+            <div class="title-overlay fill"></div>
+        </div>
+
+        <div class="page-title-inner container align-center text-center flex-row-col medium-flex-wrap">
+            <div class="title-wrapper flex-col">
+                <h1 class="entry-title mb-0">
+                    Giỏ hàng </h1>
+            </div>
+            <div class="title-content flex-col">
+                <div class="title-breadcrumbs pb-half pt-half">
+                    <nav class="woocommerce-breadcrumb breadcrumbs"><a href="../../index.html">Trang chủ</a> <span
+                            class="divider">/</span>
+                        Giỏ hàng</nav>
+                </div>
+            </div>
+        </div><!-- flex-row -->
+
+
+        <style scope="scope">
+            #page-header-1709836191 .page-title-inner {
+                min-height: 180px;
+            }
+
+            #page-header-1709836191 .title-bg {
+                background-image: url(http://mauweb.monamedia.net/dualeoshoes/wp-content/uploads/2019/05/Rublevoy_Steemit.png);
+                background-position: 50% 100%;
+            }
+
+            #page-header-1709836191 .title-overlay {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+        </style>
+    </div><!-- .page-title -->
+</div>
+<!--GIỎ HÀNG-->
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Giỏ hàng</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <thead>
+                    <tr>
+                        <!-- Set columns width -->
+                        <th class="text-center py-3 px-4" style="min-width: 400px;">Tên sản phẩm &amp; Mô tả</th>
+                        <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>
+                        <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>
+                        <th class="text-right py-3 px-4" style="width: 100px;">Tổng</th>
+                        <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#"
+                                                                                               class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i
+                                class="ino ion-md-trash"></i></a></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr *ngFor="let item of cartItems">
+                        <td class="p-4">
+                            <div class="media align-items-center" style="display: flex; align-items: center;">
+                                <img [src]="item.product.url" class="d-block ui-w-40 ui-bordered mr-4 me-4" alt="">
+                                <div class="media-body">
+                                    <a href="#" class="d-block text-dark">{{ item.product.name }}</a>
+                                    <small>
+                                        <span class="text-muted">Size: </span> EU 37 &nbsp;
+
+                                    </small>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }}</td>
+                        <td class="align-middle p-4"><input type="text" class="form-control text-center" [value]="item.quantity"></td>
+                        <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price *  item.quantity}}</td>
+                        <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger"
+                                                                     title="" data-original-title="Remove">×</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- / Shopping cart table -->
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+                <div class="mt-4">
+                    <label class="text-muted font-weight-normal">Mã giảm giá</label>
+                    <input type="text" placeholder="ABC" class="form-control">
+                </div>
+                <div class="d-flex">
+                    <div class="text-right mt-4 mr-5 me-5">
+                        <label class="text-muted font-weight-normal m-0">Giảm giá</label>
+                        <div class="text-large"><strong>$20</strong></div>
+                    </div>
+                    <div class="text-right mt-4">
+                        <label class="text-muted font-weight-normal m-0">Tổng giá</label>
+                        <div class="text-large"><strong>{{ totalMoney }}</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-lg btn-light md-btn-flat mt-2 mr-3" routerLink="/store">Quay lại</button>
+                <button type="button" class="btn btn-lg btn-primary mt-2">Thanh toán</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+</body>
+
+</html>
