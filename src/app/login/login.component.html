@@ -20,7 +20,42 @@
     <title>Login</title>>
 </head>
 <body>
-
+    <div class="modal" *ngIf="modalService.isModalForgotPassword" style="display: block !important;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Quên mật khẩu</h5>
+              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+              <div class="container rounded bg-white">
+                <form [formGroup]="forgotPassForm">
+                  <div class="row">
+                    <div class="col-md-3 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3"><img class="rounded-circle mt-5" width="150px" src="../../assets/img/avt/User-avatar.svg (1).png"><span> </span></div>
+                    </div>
+                    <div class="col-md-8 border-right">
+                        <div class="p-3 py-5">
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Email</label>
+                                    <input formControlName="email" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Đóng</button>
+              <button type="button" (click)="send()" class="btn btn-primary">Gửi</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <div class="content">
     <div class="container">
@@ -32,7 +67,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="mb-4">
-                            <h3>Sign In</h3>
+                            <h3>Đăng nhập</h3>
 
                         </div>
                         <form [formGroup]="loginForm">
@@ -55,10 +90,11 @@
                                     <input type="checkbox" checked="checked"/>
                                     <div class="control__indicator"></div>
                                 </label>
-                                <span class="ml-auto"><a href="#" class="forgot-pass">Quên mật khẩu</a></span>
+                                <span class="ml-auto"><a (click)="forgotPassword()" class="forgot-pass">Quên mật khẩu</a></span>
+                                
                             </div>
 
-                            <input type="submit" (click)="login()" value="Log In" class="btn btn-block btn-primary">
+                            <input type="submit" (click)="login()" value="Đăng nhập" class="btn btn-block btn-primary">
 
                             <span class="d-block text-left my-4 text-muted">&mdash; hoặc đăng nhập bằng &mdash;</span>
 

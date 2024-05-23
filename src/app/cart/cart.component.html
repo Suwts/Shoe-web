@@ -52,15 +52,13 @@
 <div class="container px-3 my-5 clearfix">
     <!-- Shopping cart table -->
     <div class="card">
-        <div class="card-header">
-            <h2>Giỏ hàng</h2>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered m-0">
                     <thead>
                     <tr>
                         <!-- Set columns width -->
+                        <th class="text-center py-3 px-4" style="width:10px;"></th>
                         <th class="text-center py-3 px-4" style="min-width: 400px;">Tên sản phẩm &amp; Mô tả</th>
                         <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>
                         <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>
@@ -73,49 +71,44 @@
                     <tbody>
 
                     <tr *ngFor="let item of cartItems">
+                        <td class="align-middle">
+                            <input type="checkbox" (change)="selectProduct($event, item.product.productID)">
+                        </td>
                         <td class="p-4">
                             <div class="media align-items-center" style="display: flex; align-items: center;">
                                 <img [src]="item.product.url" class="d-block ui-w-40 ui-bordered mr-4 me-4" alt="">
                                 <div class="media-body">
-                                    <a href="#" class="d-block text-dark">{{ item.product.name }}</a>
+                                    <button class="d-block text-dark">{{ item.product.name }}</button>
                                     <small>
-                                        <span class="text-muted">Size: </span> EU 37 &nbsp;
+                                        <span class="text-muted">Kích thước: </span> {{ item.product.size }} &nbsp;
 
                                     </small>
                                 </div>
                             </div>
                         </td>
-                        <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }}</td>
+                        <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price | currency :'VND' :'symbol' : '1.0-0'}}</td>
                         <td class="align-middle p-4"><input type="text" class="form-control text-center" [value]="item.quantity"></td>
-                        <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price *  item.quantity}}</td>
-                        <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger"
-                                                                     title="" data-original-title="Remove">×</a></td>
+                        <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price *  item.quantity | currency :'VND' :'symbol' : '1.0-0'}}</td>
+                        <td class="text-center align-middle px-0"><button (click)="removeProduct(item.product.productID)" class="shop-tooltip close float-none text-danger"
+                                                                     title="" data-original-title="Remove">×</button></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <!-- / Shopping cart table -->
 
-            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
-                <div class="mt-4">
-                    <label class="text-muted font-weight-normal">Mã giảm giá</label>
-                    <input type="text" placeholder="ABC" class="form-control">
-                </div>
-                <div class="d-flex">
-                    <div class="text-right mt-4 mr-5 me-5">
-                        <label class="text-muted font-weight-normal m-0">Giảm giá</label>
-                        <div class="text-large"><strong>$20</strong></div>
-                    </div>
-                    <div class="text-right mt-4">
+            <div class="align-items-center pb-4" style="text-align: end;">
+                <div>
+                    <div class=" mt-4">
                         <label class="text-muted font-weight-normal m-0">Tổng giá</label>
-                        <div class="text-large"><strong>{{ totalMoney }}</strong></div>
+                        <div class="text-large"><strong>{{ totalMoney | currency :'VND' :'symbol' : '1.0-0' }}</strong></div>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-lg btn-light md-btn-flat mt-2 mr-3" routerLink="/store">Quay lại</button>
-                <button type="button" class="btn btn-lg btn-primary mt-2">Thanh toán</button>
+                <button type="button" class="btn btn-lg btn-primary mt-2" (click)="order()" >Đặt hàng</button>
             </div>
 
         </div>

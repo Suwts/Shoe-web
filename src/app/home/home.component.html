@@ -157,250 +157,33 @@
                         <div class="owl-stage-outer">
                             <div class="owl-stage"
                                  style="transform: translate3d(-1401px, 0px, 0px); transition: all 1.2s ease 0s; width: 2337px;">
-                                <div class="owl-item cloned" style="width: 208.621px; margin-right: 25px;">
+                                
+                                <div class="owl-item active" *ngFor="let product of products" style="width: 208.621px; margin-right: 25px;">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                                <img src="../../assets/img/shoe/women-1.jpg" alt="">
+                                            <img [src]="product.url" alt="">
                                             <div class="icon">
                                                 <i class="fa-regular fa-heart"></i>
                                             </div>
                                             <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
+                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-eye"></i></a></li>
+                                                <li class="quick-view"><a (click)="productDetail(product)">Xem chi tiết</a></li>
                                                 <!-- <i class="fa-regular fa-heart"></i> -->
                                             </ul>
                                         </div>
                                         <div class="pi-text">
-                                            <div class="catagory-name">Shoes</div>
+                                            
                                             <a href="#">
-                                                <h5>Guangzhou sweater</h5>
+                                                <h5>{{ product.name }}</h5>
                                             </a>
                                             <div class="product-price">
-                                                $13.00
+                                               {{ product.price| currency :'VND' :'symbol' : '1.0-0' }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="owl-item cloned" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Converse Shoes</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-1.jpg" alt="">
-                                            <div class="sale">Sale</div>
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Coat</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $14.00
-                                                <span>$35.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Shoes</div>
-                                            <a href="#">
-                                                <h5>Guangzhou sweater</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $13.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Converse Shoes</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
-                                            <div class="sale">Sale</div>
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Coat</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $14.00
-                                                <span>$35.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned active" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Shoes</div>
-                                            <a href="#">
-                                                <h5>Guangzhou sweater</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $13.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 208.621px; margin-right: 25px;">
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-1.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="fa-solid fa-cart-plus"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Add Cart</a></li>
-                                                <!-- <i class="fa-regular fa-heart"></i> -->
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
                             </div>
                         </div>
 
@@ -560,7 +343,7 @@
     <section class="man-banner spad">
         <div class="container-fluid">
             <div class="container section-title-container" id="container-1153665734">
-                <h4 class="section-title section-title-center"><b></b><span class="section-title-main">Giày nam</span><b></b></h4>
+                <h4 class="section-title section-title-center"><b></b><span class="section-title-main">Giày scandal</span><b></b></h4>
             </div><!-- .section-title -->
             <div class="row">
                 <div class="col-lg-8">
@@ -571,7 +354,7 @@
                                 <div class="owl-item cloned" style="width: 242.667px; margin-right: 25px;">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
+                                            <img src="../../assets/img/shoe/nike1.jpg" alt="">
                                             <div class="icon">
                                                 <i class="fa-regular fa-heart"></i>
                                             </div>
@@ -587,7 +370,7 @@
                                                 <h5>Guangzhou sweater</h5>
                                             </a>
                                             <div class="product-price">
-                                                $13.00
+                                                đ1.232.232
                                             </div>
                                         </div>
                                     </div>
@@ -716,7 +499,7 @@
                                 <div class="owl-item active" style="width: 242.667px; margin-right: 25px;">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
+                                            <img src="../../assets/img/shoe/nike2.jpg" alt="">
                                             <div class="icon">
                                                 <i class="fa-regular fa-heart"></i>
                                             </div>
@@ -732,7 +515,7 @@
                                                 <h5>Converse Shoes</h5>
                                             </a>
                                             <div class="product-price">
-                                                $34.00
+                                                đ1.232.232
                                             </div>
                                         </div>
                                     </div>
@@ -740,7 +523,7 @@
                                 <div class="owl-item cloned active" style="width: 242.667px; margin-right: 25px;">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
+                                            <img src="../../assets/img/shoe/nike2.jpg" alt="">
                                             <div class="sale">Sale</div>
                                             <div class="icon">
                                                 <i class="fa-regular fa-heart"></i>
@@ -757,8 +540,8 @@
                                                 <h5>Pure Pineapple</h5>
                                             </a>
                                             <div class="product-price">
-                                                $14.00
-                                                <span>$35.00</span>
+                                                đ1.232.232
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -766,7 +549,7 @@
                                 <div class="owl-item cloned active" style="width: 242.667px; margin-right: 25px;">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
+                                            <img src="../../assets/img/shoe/vans1.jpg" alt="">
                                             <div class="icon">
                                                 <i class="fa-regular fa-heart"></i>
                                             </div>
@@ -782,15 +565,15 @@
                                                 <h5>Guangzhou sweater</h5>
                                             </a>
                                             <div class="product-price">
-                                                $13.00
+                                                đ1.232.232
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="owl-item cloned" style="width: 242.667px; margin-right: 25px;">
+                                <div class="owl-item cloned active" style="width: 242.667px; margin-right: 25px;">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img src="../../assets/img/shoe/women-3.jpg" alt="">
+                                            <img src="../../assets/img/shoe/nike3.jpg" alt="">
                                             <div class="icon">
                                                 <i class="fa-regular fa-heart"></i>
                                             </div>
@@ -806,7 +589,7 @@
                                                 <h5>Pure Pineapple</h5>
                                             </a>
                                             <div class="product-price">
-                                                $34.00
+                                                đ1.232.232
                                             </div>
                                         </div>
                                     </div>
@@ -868,11 +651,11 @@
                                     <div class="testimonial-content">
                                         <p>
                                             <i class="fa-solid fa-quote-left"></i>
-                                            Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                                            Tôi thực sự hài lòng về chất lượng giày và sự phục vụ của nhân viên. Giày chất lượng và đúng với giá tiền
                                             <i class="fa-solid fa-quote-right"></i>
                                         </p>
-                                        <h3>Saul Goodman</h3>
-                                        <h4>Ceo &amp; Founder</h4>
+                                        <h3>Nguyễn Văn Anh</h3>
+                                        <h4>Khách hàng</h4>
                                         <div class="stars">
                                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                         </div>

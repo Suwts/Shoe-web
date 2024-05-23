@@ -16,8 +16,18 @@ import { StoreComponent } from './store/store.component';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptors } from './interceptors/token.interceptors';
+// import { TokenInterceptors } from './interceptors/token.interceptors';
 import { DetailProductComponent } from './detail-product/detail-product.component';
+import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
+import { ModalComponent } from './modal/modal.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { ProductManagementComponent } from './product-management/product-management.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { NgChartjsModule } from 'ng-chartjs';
+import { ChartsModule } from 'ng2-charts';
+import { SuccessComponent } from './confirm-order/success/success.component';
+import { ConfirmOrderRoutingModule } from './confirm-order/confirm-order.router';
+// import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @NgModule({
   declarations: [
@@ -33,21 +43,31 @@ import { DetailProductComponent } from './detail-product/detail-product.componen
     RegisterComponent,
     LoginComponent,
     StoreComponent,
-    DetailProductComponent
+    DetailProductComponent,
+    ConfirmOrderComponent,
+    ModalComponent,
+    UserManagementComponent,
+    ProductManagementComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ConfirmOrderRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    NgChartjsModule,
+    ChartsModule
+    // CanvasJSAngularChartsModule
+    // NgChartjsModule.registerPlugin([]),
   ],
   providers: [
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass: TokenInterceptors,
-      multi : true,
-    }
+    // {
+    //   provide:HTTP_INTERCEPTORS,
+    //   useClass: TokenInterceptors,
+    //   multi : true,
+    // }
   ],
   bootstrap: [
     AppComponent

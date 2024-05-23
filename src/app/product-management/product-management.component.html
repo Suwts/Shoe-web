@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>User management</title>
+</head>
+
+<body>
+  <div class="modal" *ngIf="modalService.isModalProduct" style="display: block !important;" id="exampleModal"
+    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style=" --bs-modal-width:1300px ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="type == 'edit' ">Sửa thông tin sản phẩm</h5>
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="type == 'add' ">Thêm sản phẩm</h5>
+
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <div class="modal-body">
+          <div class="container rounded bg-white">
+            <form [formGroup]="updateForm">
+              <div class="row">
+                <div class="col-md-3 border-right d-flex" style="justify-content: center;align-items: center; ">
+                  <div class="d-flex flex-column align-items-center text-center p-3" *ngIf="type == 'edit' ">
+                    <img class="rounded-circle mt-5" width="150px" [src]="productByID.url"><span> </span>
+                    <input type="file" formControlName="image">
+                  </div>
+                  <!-- <div class="align-items-center text-center p-3" *ngIf="type == 'add' ">
+                        <input type="file" formControlName="image"></div> -->
+                </div>
+                <div class="col-md-5 border-right">
+                  <div class="p-3 py-5">
+                    <div class="row mt-3">
+                      <div class="col-md-12">
+                        <label class="labels">Tên sản phẩm</label>
+                        <input formControlName="name" type="text" class="form-control"
+                          style="border: 1px solid !important;">
+                      </div>
+                      <div class="col-md-12"><label class="labels">Giá</label><input formControlName="price" type="text"
+                          class="form-control" style="border: 1px solid !important;"></div>
+                      <div class="col-md-12"><label class="labels">Mô tả</label><input formControlName="description"
+                          type="text" class="form-control" style="border: 1px solid !important;"></div>
+                      <div class="col-md-12"><label class="labels">Kích cỡ</label><input formControlName="size"
+                          type="text" class="form-control" style="border: 1px solid !important;"></div>
+                      <div class="col-md-12"><label class="labels">Số lượng nhập</label><input
+                          formControlName="number_input" type="text" class="form-control"
+                          style="border: 1px solid !important;"></div>
+                      <div class="col-md-12" *ngIf="type == 'edit'"><label class="labels">Số lượng bán</label><input
+                          disabled formControlName="number_buy" type="text" class="form-control"
+                          style="border: 1px solid !important;"></div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 py-5 ">
+                    <div style="margin-top: 15px;">
+                      <label class="labels">Thể loại</label>
+                      <select class="form-control" formControlName="selectCatetory"
+                        style="border: 1px solid !important;">
+                        <!-- <option disabled selected [value]="catetory_id">Lựa chọn</option> -->
+                        <option *ngFor="let catetory of catetories" [value]="catetory.catetoryID">{{ catetory.name }}
+                        </option>
+
+                      </select>
+                      <label class="labels">Thương hiệu</label>
+                      <select class="form-control" formControlName="selectBrand" style="border: 1px solid !important;">
+                        <!-- <option disabled selected value="0">Lựa chọn</option> -->
+                        <option *ngFor="let brand of brands" [value]="brand.brandID">{{ brand.name }}</option>
+
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Đóng</button>
+          <button type="button" (click)="updateProduct()" class="btn btn-primary" *ngIf="type == 'edit' ">Lưu thay
+            đổi</button>
+          <button type="button" (click)="createProduct()" class="btn btn-primary" *ngIf="type == 'add' ">Thêm
+            mới</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-header></app-header>
+  <div id="page-header-1709836191" class="page-header-wrapper">
+    <div class="page-title dark featured-title">
+
+      <div class="page-title-bg">
+        <div class="title-bg fill bg-fill parallax-active" data-parallax-container=".page-title"
+          data-parallax-background="" data-parallax="-">
+        </div>
+        <div class="title-overlay fill"></div>
+      </div>
+
+      <div class="page-title-inner container align-center text-center flex-row-col medium-flex-wrap">
+        <div class="title-wrapper flex-col">
+          <h1 class="entry-title mb-0">
+            Quản lý sản phẩm </h1>
+        </div>
+        <div class="title-content flex-col">
+          <div class="title-breadcrumbs pb-half pt-half">
+            <nav class="woocommerce-breadcrumb breadcrumbs"><a href="../../index.html">Trang chủ</a> <span
+                class="divider">/</span>
+              Quản lý sản phẩm</nav>
+          </div>
+        </div>
+      </div><!-- flex-row -->
+
+
+
+      <style scope="scope">
+        #page-header-1709836191 .page-title-inner {
+          min-height: 180px;
+        }
+
+        #page-header-1709836191 .title-bg {
+          background-image: url(http://mauweb.monamedia.net/dualeoshoes/wp-content/uploads/2019/05/Rublevoy_Steemit.png);
+          background-position: 50% 100%;
+        }
+
+        #page-header-1709836191 .title-overlay {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+      </style>
+    </div><!-- .page-title -->
+  </div>
+
+  <div class="container-xl">
+    <div>
+      <h2 style="font-size: 24px; text-align: center; margin-top: 10px;">Biểu đồ danh thu tháng</h2>
+
+      <div style="display: block;">
+        <canvas baseChart width="500" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+          [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-5">
+              <h2>Sản phẩm</h2>
+            </div>
+
+            <div class="col-sm-7" style="text-align: end;">
+              <button class="primary-btn" (click)="productClickEdit(1,0)">Thêm</button>
+              <!-- <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						 -->
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th class="center">ID</th>
+              <th>Ảnh sản phẩm</th>
+              <th>Tên sản phẩm</th>
+              <th>Kích cỡ</th>
+              <th>Số lượng nhập</th>
+              <th>Số lượng tồn</th>
+              <!-- <th>Hãng</th> -->
+              <th class="right">Giá</th>
+              <th class="right">Thu nhập</th>
+              <th>Phần trăm</th>
+              <th>Trạng thái</th>
+              <th class="align-middle">#</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+
+              <td class="align-middle">{{ product.productID }}</td>
+              <td class="align-middle">
+                <img [src]="product.url" class="d-block ui-w-40 ui-bordered mr-4 me-4" alt=""
+                  style="width: 50% !important;">
+              </td>
+              <td class="align-middle">{{ product.name }}</td>
+              <td class="align-middle">{{ product.size }}</td>
+              <td class="align-middle">{{ product.number_input }}</td>
+              <td class="align-middle">{{ product.number_input - product.number_buy }}</td>
+              <!-- <td class="left strong">Iphone 10X with headphone</td> -->
+              <td class="align-middle">{{ product.price| currency :'VND' :'symbol' : '1.0-0' }}</td>
+              <td class="align-middle">{{ product.number_buy* product.price | currency :'VND' :'symbol' : '1.0-0'}}</td>
+              <td class="align-middle">{{ (product.number_buy* product.price)/totalMoney * 100| number : '2.2-2' }}%
+              </td>
+              <td class="align-middle" *ngIf="product.active == 0">Ngừng bán</td>
+              <td class="align-middle" *ngIf="product.active == 1">Đang bán</td>
+              <td>
+                <div class="d-flex">
+                  <button class="btn btn-danger me-3" (click)="delete(product.productID)">Xóa</button>
+                  <button class="btn btn-primary" (click)="productClickEdit(2, product.productID)">Sửa</button>
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+        <div class="clearfix">
+          <!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+          <ul class="pagination">
+            <li class="page-item" *ngIf="currentPage > 1"><a (click)="onPageChange(1)">Đầu</a></li>
+            <li class="page-item" *ngIf="currentPage > 1"><a class="page-link" (click)="onPageChange(currentPage -1)">
+                << </a>
+            </li>
+            <ng-container *ngFor="let page of visiblePage">
+              <li class="page-item" [ngClass]="{'active' : page === currentPage}">
+                <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+              </li>
+            </ng-container>
+            <li class="page-item" *ngIf="currentPage < totalPage">
+              <a class="page-link" (click)="onPageChange(currentPage  + 1)">>></a>
+            </li>
+            <li class="page-item" *ngIf="currentPage < totalPage">
+              <a class="page-link" (click)="onPageChange(totalPage)">Cuối</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+
+</body>
+
+</html>

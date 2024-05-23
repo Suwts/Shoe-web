@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
+import { ModalService } from '../service/modal.service';
+import { ProductSerivce } from '../service/product.service';
+import { Product } from '../model/product.model';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +11,17 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-
-  constructor() {
+  products : Product[] = [];
+  currentPage : number = 1;
+  itemPerPage : number = 9;
+  totalPage : number = 0;
+  keyword : string ='';
+  
+  constructor(
+    public modalService : ModalService,
+    private productService : ProductSerivce,
+    private router : Router,
+  ) {
     
   }
 
@@ -27,8 +41,29 @@ export class HomeComponent implements OnInit{
     setTimeout(() => this.ShowSlider(), 5000)
   }
 
+  getProduct(keywords : string , page: number, limit : number){
+    this.productService.getProducts(keywords,page, limit).subscribe({
+      next: (respone: any) =>{
+        respone.products.forEach((product : Product) =>{
+          product.url = `${environment.api}/product/images/${product.image}`;
+        });
+        this.products = respone.products;
+        this.totalPage = respone.totalPage;
+      },
+      complete:()=>{},
+      error:(error:any) =>{
+        alert("Error: "+error)
+      }
+    })
+  }
+
+  productDetail(product : Product){
+    this.router.navigate(['/product/detail'], {queryParams : {term: product.productID}});
+  }
+
   ngOnInit(): void {
     this.ShowSlider();
+    this.getProduct(this.keyword,this.currentPage, this.itemPerPage);
 
 // (() => {
 //   "use strict";

@@ -10,10 +10,17 @@ import { RegisterComponent } from './register/register.component';
 import { StoreComponent } from './store/store.component';
 import { HomeComponent } from './home/home.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
+import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
+import { AuthGuard } from './AuthGuard/authguard';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { AuthGuardAdmin } from './AuthGuard/authguard.admin';
+import { ProductManagementComponent } from './product-management/product-management.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
     path: 'cart',
+    canActivate: [AuthGuard],
     component: CartComponent
   },
   {
@@ -47,6 +54,25 @@ const routes: Routes = [
   {
     path: 'store',
     component: StoreComponent
+  },
+  {
+    path: 'confirm-order',
+    canActivate: [AuthGuard],
+    component : ConfirmOrderComponent
+  },
+  {
+    path: 'user-management',
+    canActivate: [AuthGuardAdmin],
+    component: UserManagementComponent
+  },
+  {
+    path:'product-management',
+    canActivate: [AuthGuardAdmin],
+    component:ProductManagementComponent
+  },
+  {
+    path:'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

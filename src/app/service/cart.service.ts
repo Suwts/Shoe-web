@@ -32,4 +32,9 @@ export class CartService{
         localStorage.setItem('cart',JSON.stringify(Array.from(this.cart.entries())));
     }
 
+    removeItems(productID: number) : any{
+        this.cart.delete(productID);
+        return this.saveCartToLocalStorage();
+    }
+
 }

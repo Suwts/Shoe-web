@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ProductSerivce } from '../service/product.service';
 import { Product } from '../model/product.model';
 import { environment } from 'src/environments/environment';
@@ -22,7 +22,8 @@ export class StoreComponent implements OnInit {
   constructor(
     private productService : ProductSerivce,
     private activedRoute : ActivatedRoute,
-    private router : Router
+    private router : Router,
+    private cdRef : ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +32,12 @@ export class StoreComponent implements OnInit {
     if(keyword == undefined){
       keywords = '';
     }
+    console.log("-------keyword----" + keywords);
+    // this.currentPage = parseInt(this.activedRoute.snapshot.queryParams['page'])
     this.getProduct(keywords, this.currentPage, this.itemPerPage);
+    
     this.getCatetory();
+    
   }
   getProduct(keywords : string , page: number, limit : number){
     this.productService.getProducts(keywords,page, limit).subscribe({
@@ -43,8 +48,12 @@ export class StoreComponent implements OnInit {
         this.products = respone.products;
         this.totalPage = respone.totalPage;
         this.visiblePage = this.generateVisiablePage(this.currentPage, this.totalPage);
+
       },
-      complete:()=>{},
+      complete:()=>{
+        window.scrollTo(0, 0);
+
+      },
       error:(error:any) =>{
         alert("Error: "+error)
       }
@@ -52,7 +61,12 @@ export class StoreComponent implements OnInit {
   }
   onPageChange(page : number){
     this.currentPage = page;
-    // this.getProduct(this.currentPage, this.itemPerPage);
+    this.router.navigate(['/store'], {queryParams:{page : page}})
+    // this.currentPage = parseInt(this.activedRoute.snapshot.queryParams['page'])
+    
+    // window.scrollTo(0, 0);
+    this.getProduct("",this.currentPage, this.itemPerPage);
+    // this.cdRef.detectChanges();
   }
   generateVisiablePage(currentPage : number, totalPage : number) : number[]{
     const maxVisiblePage = 5;
@@ -80,8 +94,7 @@ export class StoreComponent implements OnInit {
     })
   }
   productDetail(product : Product){
-    this.router.navigate(['/product/detail'], {queryParams : {term: product.name}});
-    console.log("-------------product id---------" + product.name);
+    this.router.navigate(['/product/detail'], {queryParams : {term: product.productID}});
   }
 
 }

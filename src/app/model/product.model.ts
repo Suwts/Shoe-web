@@ -5,7 +5,11 @@ export class Product{
     discount : number;
     description : string;
     image : string;
-    catetoryID : number;
-    brandID : number;
+    catetory_id : number;
+    brand_id : number;
     url : string;
+    size : number;
+    number_input: number;
+    number_buy : number;
+    active : number;
 }

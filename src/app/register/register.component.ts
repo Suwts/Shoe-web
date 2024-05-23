@@ -69,7 +69,9 @@ export class RegisterComponent implements OnInit {
     };
     this.userService.register(register).subscribe({
       next:(respone:any) => {
-        this.router.navigate['/login'];
+        alert("Đăng kí thành công");
+        this.router.navigate(['/login']);
+        console.log("---------");
       },
       complete:() => {   
       },

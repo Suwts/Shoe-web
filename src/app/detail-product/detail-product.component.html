@@ -25,15 +25,17 @@
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
 						<h3>{{ product.name }}</h3>
-						<h2>{{ product.price }} đ</h2>
+						<h2>{{ product.price | currency :'VND' :'symbol' : '1.0-0'}}</h2>
 						<ul class="list">
-							<li><p><span>Category</span> : Household</p></li>
-							<li><p><span>Brand</span> : In Stock</p></li>
+							<li><p><span>Category</span> : {{ catetory.name }}</p></li>
+							<li><p><span>Brand</span> : {{ brand.name }}</p></li>
+							<li><p><span>Số lượng còn</span> : {{ product.number_input - product.number_buy }}</p></li>
+							<li><p><span>Kích thước</span> : {{ product.size }}</p></li>
 						</ul>
 						<p>{{ product.description }}</p>
 						<div class="product_count">
 							<div class="border-wrapper">
-								<label for="qty">Quantity:</label>
+								<label for="qty">Số lượng:</label>
 								<input type="text" [value]="quantity">
 								<button (click)="increaseQuantity()" class="increase"><i class="fa-solid fa-chevron-up"></i></button>
 								<button (click)="decreaseQuantity()" class="decrease" ><i class="fa-solid fa-chevron-down"></i></button>
@@ -54,34 +56,38 @@
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
 					<a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment"
-					 aria-selected="false">Comments</a>
+					 aria-selected="false">Bình luận</a>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
 					 aria-selected="false">Reviews</a>
-				</li>
+				</li> -->
 			</ul>
 			<div class="tab-content" id="myTabContent">
+				<form [formGroup]="commentForm">
+					<div class="d-flex mb-2">
+						<textarea placeholder="Bình luận" rows="2" style="width: 80%;" formControlName="comment"></textarea>
+						<button class="primary-btn" (click)="send()">Gửi</button>
+					</div>
+				</form>
 				<div class="tab-pane fade show active" id="comment" role="tabpanel" aria-labelledby="comment-tab">
 					<div class="row">
 						<div class="col-lg-10">
 							<div class="comment_list">
-								<div class="review_item">
+								<div class="review_item" *ngFor="let item of comment1">
 									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
-										</div>
+										<!-- <div class="d-flex">
+											<img src="../../assets/img/avt/User-avatar.svg (1).png" alt="Ảnh đại diện">
+										</div> -->
 										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<h5>12th Feb, 2018 at 05:56 pm</h5>
-											<a class="reply_btn" href="#">Reply</a>
+											<h4>{{ item.user_name }}</h4>
+											<h5>{{ item.createtime }}</h5>
+											<a class="reply_btn" href="#">Trả lời</a>
 										</div>
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
+									<p>{{item.note}}</p>
 								</div>
-								<div class="review_item reply">
+								<!-- <div class="review_item reply">
 									<div class="media">
 										<div class="d-flex">
 											<img src="img/product/review-2.png" alt="">
@@ -95,28 +101,13 @@
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
 										commodo</p>
-								</div>
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
-										</div>
-										<div class="media-body">
-											<h4>Blake Ruiz</h4>
-											<h5>12th Feb, 2018 at 05:56 pm</h5>
-											<a class="reply_btn" href="#">Reply</a>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo</p>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						
 					</div>
 				</div>
-				<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+				<!-- <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="row total_rate">
@@ -242,7 +233,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>
